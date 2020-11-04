@@ -4,7 +4,6 @@ package _3D_Graphics;
  *
  * @author Fenias
  */
-import java.util.Collection;
 import javafx.application.*;
 import javafx.stage.*;
 import javafx.scene.*;
@@ -14,8 +13,8 @@ import javafx.scene.shape.*;
 
 public class Sphere1 extends Application{
 
-    public Sphere1(int par) {
-    }
+    private static final int width = 600;
+    private static final int height = 500;
     
     public static void main(String[] args) {
         // Starting program by calling launching
@@ -28,19 +27,18 @@ public class Sphere1 extends Application{
         // giving the Stage a title
         myStage.setTitle("Sphere");
         
-        // creating a root node (FlowPlane)
-        FlowPane rootNode = new FlowPane();
-        
         // creating a Sphere1 with a radius equal to 50
         Sphere sphere = new Sphere(50);
+        
         // creating a conteiner Group and passing the sphere as Parameter 
         Group group = new Group(sphere);
         
-        // adding a conteiner group in the root node
-        rootNode.getChildren().add(group);
-        
         // set a Scene on the Stage
-        Scene myScene = new Scene(group, 600, 500);
+        Scene myScene = new Scene(group, width, height);
+        
+        // redirecting the sphere to the center
+        sphere.translateXProperty().set(width / 2);
+        sphere.translateYProperty().set(height / 2);
         
         // setting the the Scene on the Stage
         myStage.setScene(myScene);
