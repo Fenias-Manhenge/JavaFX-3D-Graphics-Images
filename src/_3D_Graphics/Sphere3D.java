@@ -4,22 +4,19 @@ package _3D_Graphics;
  *
  * @author Fenias
  */
+
 import javafx.application.*;
-import javafx.event.*;
 import javafx.stage.*;
 import javafx.scene.*;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javax.swing.*;
 
-public class Sphere1 extends Application{
-
+public class Sphere3D extends Application{
+    
     private static final int width = 600;
     private static final int height = 500;
-    
+
     public static void main(String[] args) {
         // Starting program by calling launching
         launch(args);
@@ -28,9 +25,9 @@ public class Sphere1 extends Application{
     @Override
     public void start(Stage myStage) throws Exception{
         
-        myStage.setOnCloseRequest(event -> {
+        /*myStage.setOnCloseRequest(event -> {
             System.out.println("Closing the Program!");
-        });
+        });*/
         
         // giving the Stage a title
         myStage.setTitle("Sphere");
@@ -55,12 +52,11 @@ public class Sphere1 extends Application{
         sphere.translateXProperty().set(width / 2);
         sphere.translateYProperty().set(height / 2);
         
-        sphere.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
-            if (event.getCode() == KeyCode.A){
-                sphere.translateZProperty().set(sphere.getTranslateZ() + 10);
+        myStage.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+            switch(event.getCode()){
+                case W: sphere.translateZProperty().set(sphere.getTranslateZ() + 100); break;
+                case S: sphere.translateZProperty().set(sphere.getTranslateZ() - 100); break;
             }
-            else if (event.getCode() == KeyCode.B)
-                sphere.translateZProperty().set(sphere.getTranslateZ() - 10);
         });
         
         // setting the the Scene on the Stage
