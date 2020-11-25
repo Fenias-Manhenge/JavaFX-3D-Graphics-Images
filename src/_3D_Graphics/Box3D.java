@@ -14,8 +14,8 @@ import javafx.scene.paint.*;
 
 public class Box3D extends Application{
     
-    private static final int width = 400;
-    private static final int height = 300;
+    private static final float width = 400;
+    private static final float height = 300;
     
     public static void main(String[] args) {
         // start the program by calling launch
@@ -39,7 +39,7 @@ public class Box3D extends Application{
         group.getChildren().add(box);
 
         // creating a Scene
-        Scene myScene = new Scene(group, width, height, Color.LAVENDER);
+        Scene myScene = new Scene(group, width, height, Color.CYAN);
         
         // setting the camera to the Scene
         myScene.setCamera(camera);
@@ -50,7 +50,8 @@ public class Box3D extends Application{
         // Moving the box to the center
         group.translateXProperty().set(width / 2);
         group.translateYProperty().set(height / 2);
-        group.translateZProperty().set(-250);
+        group.translateZProperty().set(-200);
+        group.intMouseControl(group, myScene, myStage);
         
         // creating Syntaxs that rotate the objects
 //        Transform transform = new Rotate(65, new Point3D(1, 0, 0));
