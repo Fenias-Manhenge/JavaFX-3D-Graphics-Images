@@ -8,9 +8,12 @@ package _3D_Graphics;
 import javafx.application.*;
 import javafx.stage.*;
 import javafx.scene.*;
+import javafx.scene.image.*;
 import javafx.scene.shape.*;
 import javafx.scene.input.*;
 import javafx.scene.paint.*;
+import java.lang.*;
+import javax.swing.ImageIcon;
 
 public class Box3D extends Application{
     
@@ -29,8 +32,7 @@ public class Box3D extends Application{
         myStage.setTitle("Box");
         
         // creating a Box
-        Box box = new Box(100, 20, 50);
-        
+        Box box = PrepareBox();
         
         Camera camera = new PerspectiveCamera();
         
@@ -72,5 +74,20 @@ public class Box3D extends Application{
         
         // showing the Stage and the Scene
         myStage.show();
+    }
+    
+    private Box PrepareBox(){
+        Box box = new Box(100, 20, 50); 
+        try{
+            PhongMaterial material = new PhongMaterial();
+            //material.setDiffuseColor(Color.BLACK);
+            Image image = new Image(getClass().getResourceAsStream("/Textures/Texture-7.jpeg"));
+            material.setDiffuseMap(image);
+            box.setMaterial(material);
+        }catch(Exception e){
+            String message = e.getMessage();
+            System.err.println(message);
+        }
+        return box;
     }
 }
