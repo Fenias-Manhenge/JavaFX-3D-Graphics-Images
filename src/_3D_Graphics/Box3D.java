@@ -41,8 +41,9 @@ public class Box3D extends Application{
         
         // creating a container called "Group"
         Transform3D group = new Transform3D();
-        group.getChildren().addAll(box, new AmbientLight(Color.GREEN));
-        group.getChildren().addAll(PrepareLightSource());
+//        group.getChildren().addAll(box, new AmbientLight(Color.GREEN));
+//        group.getChildren().addAll(PrepareLightSource());
+          group.getChildren().addAll(box, new PointLight());
 
         // creating a Scene
         Scene myScene = new Scene(group, width, height, Color.GREY);
@@ -101,6 +102,7 @@ public class Box3D extends Application{
             PhongMaterial material = new PhongMaterial();
             material.setDiffuseMap(new Image(getClass().getResourceAsStream("/Textures/pikapau.jpg"))); // applying texture on the box
             material.setSpecularMap(new Image(getClass().getResourceAsStream("/Textures/AbText.jpg"))); 
+            material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/Textures/Texture-4.jpeg")));
             box.setMaterial(material); // setting the material on the box
         }catch(Exception e){
             System.err.println(e.getMessage());

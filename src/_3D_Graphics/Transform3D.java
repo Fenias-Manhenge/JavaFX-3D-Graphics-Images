@@ -48,6 +48,7 @@ public class Transform3D extends Group{
     public void intMouseControl(Transform3D group, Scene scene, Stage myStage){
         Rotate xRotate, yRotate;
         
+        // getting the Transformations of the Rotations X and Y Axis 
         group.getTransforms().addAll(xRotate = new Rotate(0, Rotate.X_AXIS), yRotate = new Rotate(0, Rotate.Y_AXIS));
         
         xRotate.angleProperty().bind(angleX);
