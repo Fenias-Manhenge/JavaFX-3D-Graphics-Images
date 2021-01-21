@@ -4,8 +4,7 @@ package _3D_Graphics;
  *
  * @author Fenias
  */
-
-import javafx.application.Application;
+import javafx.application.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.image.Image;
@@ -15,7 +14,7 @@ import javafx.scene.paint.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.transform.*;
 
-public class Box3D extends Application{
+public class Tests3D extends Application{
     
     private static final float width = 600;
     private static final float height = 500;
@@ -40,7 +39,7 @@ public class Box3D extends Application{
         
         // creating a container called "Group"
         Transform3D group = new Transform3D();
-        group.getChildren().addAll(box/*, new AmbientLight(Color.GREEN)*/);
+        group.getChildren().addAll(box, prepareSecondBox());
         group.getChildren().addAll(PrepareLightSource());
 //          group.getChildren().addAll(box, new PointLight());
 
@@ -94,17 +93,25 @@ public class Box3D extends Application{
     
     
     // creating the variable of the point light
-    private final PointLight pointLight = new PointLight(Color.RED);
+    private final PointLight pointLight = new PointLight();
+    
+    private Node prepareSecondBox(){
+        Box box = new Box(20, 100, 100); // creating the Box
+        PhongMaterial material = new PhongMaterial();
+        material.setDiffuseMap(new Image(getClass().getResourceAsStream("/Textures/pikapau.jpg")));
+        box.setMaterial(material);
+        return box;
+    }
     
     // Creating the box and applying texture on it 
     private Box PrepareBox(){
         Box box = new Box(100, 20, 50); // creating the Box
         try{
             PhongMaterial material = new PhongMaterial();
-            material.setDiffuseMap(new Image(getClass().getResourceAsStream("/Textures/pikapau.jpg"))); // applying texture on the box
+            //material.setDiffuseMap(new Image(getClass().getResourceAsStream("/Textures/pikapau.jpg"))); // applying texture on the box
             //material.setSpecularMap(new Image(getClass().getResourceAsStream("/Textures/AbText.jpg"))); 
-            material.setBumpMap(new Image(getClass().getResourceAsStream("/Textures/Texture-3.jpeg")));
-            //material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/Textures/Texture-4.jpeg")));
+            //material.setBumpMap(new Image(getClass().getResourceAsStream("/Textures/Texture-3.jpeg")));
+            material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/Textures/pikapau.jpg")));
             box.setMaterial(material); // setting the material on the box
         }catch(Exception e){
             System.err.println(e.getMessage());
@@ -128,3 +135,4 @@ public class Box3D extends Application{
         return new Node[]{pointLight, sphere};
     }
 }
+
